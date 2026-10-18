@@ -1,0 +1,13 @@
+{
+  "name": "ST Iron Performance",
+  "short_name": "ST Iron",
+  "description": "Personal Training Manager",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": []
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="ST Iron Performance - Personal Training Manager">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<title>ST Iron Performance</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand-mark"><img src="logo.png" alt="ST Iron Performance" onerror="this.style.display='none';this.parentElement.textContent='ST';"></div>
+  <div><h1>ST Iron Performance</h1><p>PERSONAL TRAINING MANAGER</p></div>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-view="clients">العملاء</button>
+  <button class="tab" data-view="workouts">جداول التمرين</button>
+  <button class="tab" data-view="backup">النسخ الاحتياطي</button>
+</nav>
+<main>
+<section id="clients" class="view active">
+  <div class="section-head"><h2>ملفات العملاء</h2><button id="addClient" class="primary">+ عميل جديد</button></div>
+  <input id="search" class="search" placeholder="ابحث بالاسم أو ID أو رقم التليفون">
+  <div id="clientList" class="client-list"></div>
+  <p id="emptyClients" class="empty">لسه مفيش عملاء. اضغط «عميل جديد» لإضافة أول عميل.</p>
+</section>
+<section id="workouts" class="view">
+  <div class="section-head"><h2>جدول التمرين الأسبوعي</h2></div>
+  <label class="field">اختار العميل<select id="workoutClient"></select></label>
+  <div id="workoutEditor"><p class="empty">أضف عميلًا أولًا، ثم اختاره لإدارة جدول تمرينه.</p></div>
+</section>
+<section id="backup" class="view">
+  <h2>النسخ الاحتياطي</h2>
+  <p>بياناتك محفوظة محليًا على هذا الجهاز والمتصفح. صدّر نسخة احتياطية بانتظام، خصوصًا قبل تغيير الجهاز أو مسح بيانات المتصفح.</p>
+  <div class="backup-actions">
+    <button id="exportData" class="primary">تصدير نسخة احتياطية</button>
+    <label class="upload-btn">استيراد نسخة احتياطية<input id="importData" type="file" accept="application/json"></label>
+  </div>
+  <p id="backupStatus" class="status"></p>
+  <p class="warning">تنبيه: التخزين المحلي ليس حسابًا سحابيًا، وقد تُفقد البيانات إذا حُذفت بيانات المتصفح. لا تدخل معلومات شديدة الحساسية، واحمِ هاتفك برمز قفل.</p>
+</section>
+</main>
+
+<dialog id="clientDialog">
+<form id="clientForm" method="dialog">
+  <div class="dialog-head"><h2 id="dialogTitle">إضافة عميل</h2><button type="button" class="icon-btn" id="closeDialog" aria-label="إغلاق">×</button></div>
+  <input type="hidden" id="clientKey">
+  <div class="form-grid">
+    <label class="field">ID <input id="cId" required autocomplete="off"></label>
+    <label class="field">الاسم <input id="cName" required autocomplete="name"></label>
+    <label class="field">رقم التليفون <input id="cPhone" inputmode="tel"></label>
+    <label class="field">السن <input id="cAge" type="number" min="1" max="120"></label>
+    <label class="field">نوع الباقة <input id="cPackage" placeholder="مثال: Personal Training"></label>
+    <label class="field">إجمالي جلسات الباقة <input id="cTotal" type="number" min="0" value="0"></label>
+    <label class="field">الجلسات المستخدمة <input id="cUsed" type="number" min="0" value="0"></label>
+    <label class="field">تاريخ الاشتراك <input id="cDate" type="date"></label>
+  </div>
+  <h3>آخر قياسات InBody</h3>
+  <div class="form-grid">
+    <label class="field">تاريخ القياس <input id="iDate" type="date"></label>
+    <label class="field">الوزن (kg) <input id="iWeight" type="number" step="0.1"></label>
+    <label class="field">نسبة الدهون (%) <input id="iFat" type="number" step="0.1"></label>
+    <label class="field">كتلة العضلات (kg) <input id="iMuscle" type="number" step="0.1"></label>
+    <label class="field">ملاحظات القياس <input id="iNotes"></label>
+  </div>
+  <label class="field">Assessment / ملاحظات التقييم<textarea id="cAssessment" rows="3" placeholder="الحركة، المرونة، الإصابات المعلنة، مستوى الخبرة..."></textarea></label>
+  <div class="dialog-actions"><button type="button" id="cancelDialog" class="secondary">إلغاء</button><button type="submit" class="primary">حفظ العميل</button></div>
+</form>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
